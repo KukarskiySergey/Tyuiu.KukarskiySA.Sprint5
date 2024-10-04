@@ -1,4 +1,5 @@
-﻿using tyuiu.cources.programming.interfaces.Sprint5;
+﻿using System.Globalization;
+using tyuiu.cources.programming.interfaces.Sprint5;
 
 namespace Tyuiu.KukarskiySA.Sprint5.Task0.V24.Lib
 {
@@ -10,11 +11,13 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task0.V24.Lib
 
             result = Math.Round(result, 3);
 
+            string formattedResult = result.ToString("F3", CultureInfo.GetCultureInfo("ru-RU"));
+
             string filePath = "OutPutFileTask0.txt";
 
-            File.WriteAllText(filePath, result.ToString());
+            File.WriteAllText(filePath, formattedResult);
 
-            return $"Результат: {result}, сохранён в файл: {filePath}";
+            return $"Результат: {formattedResult}, сохранён в файл: {filePath}";
         }
     }
 }

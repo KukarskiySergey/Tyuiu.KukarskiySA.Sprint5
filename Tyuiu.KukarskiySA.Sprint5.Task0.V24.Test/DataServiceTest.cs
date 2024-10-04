@@ -11,7 +11,7 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task0.V24.Test
             // Arrange
             DataService dataService = new DataService();
             int x = 3;
-            double expectedValue = 1.056;
+            string expectedValue = "1,056";  // Ожидаем строку с запятой
             string filePath = "OutPutFileTask0.txt";
 
             // Act
@@ -19,10 +19,9 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task0.V24.Test
 
             // Проверяем, что файл был создан и содержит правильный результат
             string resultText = File.ReadAllText(filePath);
-            double actualResult = double.Parse(resultText);
 
             // Assert
-            Assert.AreEqual(expectedValue, actualResult);
+            Assert.AreEqual(expectedValue, resultText);
 
             // Очистка тестового файла после теста
             if (File.Exists(filePath))
