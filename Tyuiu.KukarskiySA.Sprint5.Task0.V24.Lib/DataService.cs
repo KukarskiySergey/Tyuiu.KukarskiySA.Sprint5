@@ -13,11 +13,11 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task0.V24.Lib
 
             string formattedResult = result.ToString("F3", CultureInfo.GetCultureInfo("ru-RU"));
 
-            string filePath = "OutPutFileTask0.txt";
+            string filePath = Path.GetTempFileName(); // Генерирует путь к временному файлу
 
             File.WriteAllText(filePath, formattedResult);
 
-            return $"Результат: {formattedResult}, сохранён в файл: {filePath}";
+            return filePath;
         }
     }
 }
