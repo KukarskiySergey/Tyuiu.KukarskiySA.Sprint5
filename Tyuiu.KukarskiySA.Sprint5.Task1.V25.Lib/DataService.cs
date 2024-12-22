@@ -13,26 +13,22 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task1.V25.Lib
             // Создаем текстовый файл
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine("x\tF(x)");
-
-                // Выводим таблицу на консоль
-                Console.WriteLine("x\tF(x)");
-
-                // Проходим по диапазону значений
                 for (int x = startValue; x <= stopValue; x++)
                 {
                     double fx = CalculateFunction(x);
-
                     fx = Math.Round(fx, 2);
 
+                    // Форматируем вывод с использованием CultureInfo для разделителя запятой
                     string formattedFx = fx.ToString("F2", CultureInfo.GetCultureInfo("ru-RU"));
-                    writer.WriteLine($"{x}\t{formattedFx}");
-                    Console.WriteLine($"{x}\t{formattedFx}");
+
+                    writer.WriteLine(formattedFx);
+                    Console.WriteLine(formattedFx);
                 }
             }
 
             return filePath;
         }
+
 
 
         private double CalculateFunction(int x)
