@@ -26,7 +26,7 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task2.V11.Lib
                         line.Append(matrix[i, j]);
                         if (j < matrix.GetLength(1) - 1)
                         {
-                            line.Append(" ; ");
+                            line.Append(";");
                         }
                     }
 
