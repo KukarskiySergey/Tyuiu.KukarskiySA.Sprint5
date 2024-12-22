@@ -25,13 +25,15 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task1.V25.Lib
 
                     fx = Math.Round(fx, 2);
 
-                    writer.WriteLine($"{x}\t{fx.ToString("F2", CultureInfo.InvariantCulture)}");
-                    Console.WriteLine($"{x}\t{fx.ToString("F2", CultureInfo.InvariantCulture)}");
+                    string formattedFx = fx.ToString("F2", CultureInfo.GetCultureInfo("ru-RU"));
+                    writer.WriteLine($"{x}\t{formattedFx}");
+                    Console.WriteLine($"{x}\t{formattedFx}");
                 }
             }
 
             return filePath;
         }
+
 
         private double CalculateFunction(int x)
         {
