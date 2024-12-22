@@ -18,8 +18,10 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task1.V25.Lib
                     double fx = CalculateFunction(x);
                     fx = Math.Round(fx, 2);
 
-                    // Форматируем вывод с использованием CultureInfo для разделителя запятой
-                    string formattedFx = fx.ToString("F2", CultureInfo.GetCultureInfo("ru-RU"));
+                    // Выбираем формат: без десятичной части, если дробная часть равна 0
+                    string formattedFx = (fx % 1 == 0)
+                        ? ((int)fx).ToString("F0", CultureInfo.GetCultureInfo("ru-RU"))
+                        : fx.ToString("F2", CultureInfo.GetCultureInfo("ru-RU"));
 
                     writer.WriteLine(formattedFx);
                     Console.WriteLine(formattedFx);
@@ -28,8 +30,6 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task1.V25.Lib
 
             return filePath;
         }
-
-
 
         private double CalculateFunction(int x)
         {
