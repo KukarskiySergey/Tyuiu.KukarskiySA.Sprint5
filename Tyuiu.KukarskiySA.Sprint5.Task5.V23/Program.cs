@@ -1,7 +1,7 @@
 ﻿using Tyuiu.KukarskiySA.Sprint5.Task5.V23.Lib;
 
 var service = new DataService();
-string filePath = @"C:\DataSprint5\InPutDataFileTask5V23.txt";
+string filePath = @"/app/data/AssesmentData/C#/Sprint5Task5/InPutDataFileTask5V23.txt";
 
 try
 {
