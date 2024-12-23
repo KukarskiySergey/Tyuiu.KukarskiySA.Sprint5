@@ -1,4 +1,5 @@
-﻿using tyuiu.cources.programming.interfaces.Sprint5;
+﻿using System.Globalization;
+using tyuiu.cources.programming.interfaces.Sprint5;
 
 namespace Tyuiu.KukarskiySA.Sprint5.Task4.V21.Lib
 {
@@ -14,17 +15,29 @@ namespace Tyuiu.KukarskiySA.Sprint5.Task4.V21.Lib
             try
             {
                 // Чтение содержимого файла
-                string content = File.ReadAllText(path).Trim();
-                if (!double.TryParse(content, out double x))
+                string[] lines = File.ReadAllLines(path);
+
+                double sum = 0;
+
+                foreach (string line in lines)
                 {
-                    throw new FormatException("Содержимое файла невозможно преобразовать в число.");
+                    string trimmedLine = line.Trim();
+
+                    if (double.TryParse(trimmedLine, NumberStyles.Float, CultureInfo.GetCultureInfo("ru-RU"), out double number))
+                    {
+                        // Вычисление по формуле для текущего числа
+                        double y = Math.Pow(number, 3) * Math.Cos(number) + 2 * number;
+
+                        // Суммируем результат (если требуется вывести сумму)
+                        sum += Math.Round(y, 3);
+                    }
+                    else
+                    {
+                        throw new FormatException($"Строка '{line}' невозможно преобразовать в число.");
+                    }
                 }
 
-                // Вычисление по формуле
-                double y = Math.Pow(x, 3) * Math.Cos(x) + 2 * x;
-
-                // Округление до трех знаков после запятой
-                return Math.Round(y, 3);
+                return sum; // Или возвращайте другие вычисления, если это необходимо
             }
             catch (Exception ex)
             {
