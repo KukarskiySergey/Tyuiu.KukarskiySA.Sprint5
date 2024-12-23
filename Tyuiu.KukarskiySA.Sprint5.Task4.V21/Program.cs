@@ -12,14 +12,34 @@ Console.WriteLine("* УСЛОВИЕ:                                            
 Console.WriteLine("* Вычислить значение по формуле и вывести на консоль.                  *");
 Console.WriteLine("************************************************************************");
 
-const string filePath = @"C:\DataSprint5\InPutDataFileTask5V21.txt";
-var dataService = new DataService();
+var service = new DataService();
 
 try
 {
-    // Вызываем метод и получаем результат
-    double result = dataService.LoadFromDataFile(filePath);
-    Console.WriteLine($"Результат вычисления: {result}");
+    // Ввод пути к файлу
+    Console.WriteLine("Введите путь к файлу:");
+    string filePath = Console.ReadLine();
+
+    if (string.IsNullOrWhiteSpace(filePath))
+    {
+        Console.WriteLine("Путь к файлу не может быть пустым.");
+        return;
+    }
+
+    // Убираем кавычки, если они случайно введены
+    filePath = filePath.Trim('"');
+
+    // Загрузка данных и вычисление минимального значения
+    double result = service.LoadFromDataFile(filePath);
+    Console.WriteLine($"Минимальное значение: {result}");
+}
+catch (FileNotFoundException ex)
+{
+    Console.WriteLine($"Ошибка: {ex.Message}");
+}
+catch (FormatException ex)
+{
+    Console.WriteLine($"Ошибка: {ex.Message}");
 }
 catch (Exception ex)
 {
